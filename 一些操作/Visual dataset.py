@@ -26,7 +26,7 @@ if __name__ == '__main__':
     print(df_raw.info)
     print(df_raw.columns)
 
-    if 1 == 0:
+    if 1 == 1:
         # 绘制OT数据
         date_axis = pd.to_datetime(df_raw['date'])
         plt.figure(figsize=(12, 6))
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         plt.grid(True)
         plt.show()
 
-    if 1 == 0:
+    if 1 == 1:
         df_raw['date'] = pd.to_datetime(df_raw['date'])
         # 选择连续的 500 个点
         start_index = 0  # 你可以根据需要调整起始索引

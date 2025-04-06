@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+ @Time    : 2025/4/6 16:14
+ @Author  : wly
+ @File    : Pandas时间戳索引：DatetimeIndex.py
+ @Description: 
+"""
+import os
+import pandas as pd
+
+
+if __name__ == '__main__':
+    root_path = 'D:\datasets\dataset\ETT-small'
+    data_path = 'ETTh1.csv'
+    df_raw = pd.read_csv(os.path.join(root_path, data_path))
+    date_list = df_raw['date']
+    print(date_list, '\t', type(date_list))
+    date_index = pd.DatetimeIndex(date_list)
+    print(date_index, '\t', type(date_index))
+    print(date_index[0], '\t', type(date_index[0]))
+    print(type(date_index[0]))
+    print(date_index[5556].hour, date_index[5557].hour)
+    print(date_index.hour)
