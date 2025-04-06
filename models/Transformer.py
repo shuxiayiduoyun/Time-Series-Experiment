@@ -25,8 +25,7 @@ class Model(nn.Module):
         self.encoder = Encoder(
             [
                 EncoderLayer(
-                    AttentionLayer(
-                        FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=configs.output_attention), configs.d_model, configs.n_heads),
+                    AttentionLayer(FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=configs.output_attention), configs.d_model, configs.n_heads),
                     configs.d_model,
                     configs.d_ff,
                     dropout=configs.dropout,
@@ -41,10 +40,8 @@ class Model(nn.Module):
             self.decoder = Decoder(
                 [
                     DecoderLayer(
-                        AttentionLayer(
-                            FullAttention(True, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
-                        AttentionLayer(
-                            FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
+                        AttentionLayer(FullAttention(True, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
+                        AttentionLayer(FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
                         configs.d_model,
                         configs.d_ff,
                         dropout=configs.dropout,
