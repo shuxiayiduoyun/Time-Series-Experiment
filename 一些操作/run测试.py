@@ -33,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=str, default='M')
     parser.add_argument('--target', type=str, default='OT')
     parser.add_argument('--freq', type=str, default='h')
-    parser.add_argument('--checkpoints', type=str, default='./checkpoints/')
+    parser.add_argument('--checkpoints', type=str, default='../checkpoints/')
     # forecasting task
     parser.add_argument('--seq_len', type=int, default=96)
     parser.add_argument('--label_len', type=int, default=48)
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     parser.add_argument('--dropout', type=float, default=0.1)
     parser.add_argument('--factor', type=int, default=3)
     parser.add_argument('--embed', type=str, default='timeF')
-    parser.add_argument('--output_attention', action='store_true', default=True)
+    parser.add_argument('--output_attention', action='store_true', default=False)
     parser.add_argument('--activation', type=str, default='gelu')
     # optimization
     parser.add_argument('--num_workers', type=int, default=1)
@@ -59,6 +59,8 @@ if __name__ == '__main__':
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--patience', type=int, default=3)
     parser.add_argument('--learning_rate', type=float, default=0.0001)
+    parser.add_argument('--loss', type=str, default='MSE')
+    parser.add_argument('--use_amp', action='store_true', default=True)
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True)
     parser.add_argument('--gpu', type=int, default=0)
