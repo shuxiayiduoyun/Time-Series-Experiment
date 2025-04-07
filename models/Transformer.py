@@ -26,10 +26,7 @@ class Model(nn.Module):
             [
                 EncoderLayer(
                     AttentionLayer(FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=configs.output_attention), configs.d_model, configs.n_heads),
-                    configs.d_model,
-                    configs.d_ff,
-                    dropout=configs.dropout,
-                    activation=configs.activation
+                    configs.d_model, configs.d_ff, dropout=configs.dropout, activation=configs.activation
                 ) for l in range(configs.e_layers)
             ],
             norm_layer=torch.nn.LayerNorm(configs.d_model)
@@ -42,10 +39,7 @@ class Model(nn.Module):
                     DecoderLayer(
                         AttentionLayer(FullAttention(True, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
                         AttentionLayer(FullAttention(False, configs.factor, attention_dropout=configs.dropout, output_attention=False), configs.d_model, configs.n_heads),
-                        configs.d_model,
-                        configs.d_ff,
-                        dropout=configs.dropout,
-                        activation=configs.activation,
+                        configs.d_model, configs.d_ff, dropout=configs.dropout, activation=configs.activation,
                     )
                     for l in range(configs.d_layers)
                 ],
