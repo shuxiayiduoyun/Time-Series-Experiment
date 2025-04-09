@@ -9,14 +9,15 @@
 import os
 import torch
 
-from models import Transformer
+from models import Transformer, DLinear
 
 
 class Exp_Basic(object):
     def __init__(self, args):
         self.args = args
         self.model_dict = {
-            'Transformer': Transformer
+            'Transformer': Transformer,
+            'DLinear': DLinear
         }
         self.device = self._acquire_device()
         self.model = self._build_model().to(self.device)

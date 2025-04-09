@@ -25,7 +25,7 @@ if __name__ == '__main__':
     parser.add_argument('--task_name', type=str, default='long_term_forecast')
     parser.add_argument('--is_training', type=int, default=0)
     parser.add_argument('--model_id', type=str, default='ETTh1_96_96')
-    parser.add_argument('--model', type=str, default='Transformer')
+    parser.add_argument('--model', type=str, default='DLinear', help='Transformer, DLinear')
     # data loader
     parser.add_argument('--data', type=str, default='ETTh1')
     parser.add_argument('--root_path', type=str, default='D:\datasets\dataset\ETT-small')
@@ -43,7 +43,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_len', type=int, default=48)
     parser.add_argument('--pred_len', type=int, default=96)
     parser.add_argument('--seasonal_patterns', type=str, default='Monthly', help='subset for M4')
-    parser.add_argument('--inverse', action='store_true', help='inverse output data', default=True)
+    parser.add_argument('--inverse', action='store_true', help='inverse output data', default=False)
     # model define
     parser.add_argument('--enc_in', type=int, default=7)
     parser.add_argument('--dec_in', type=int, default=7)
@@ -58,6 +58,7 @@ if __name__ == '__main__':
     parser.add_argument('--embed', type=str, default='timeF')
     parser.add_argument('--output_attention', action='store_true', default=False)
     parser.add_argument('--activation', type=str, default='gelu')
+    parser.add_argument('--moving_avg', type=int, default=25)
     # optimization
     parser.add_argument('--num_workers', type=int, default=0)
     parser.add_argument('--train_epochs', type=int, default=20)
