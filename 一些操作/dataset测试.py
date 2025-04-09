@@ -26,6 +26,6 @@ if __name__ == '__main__':
         seasonal_patterns='Monthly'
     )
     print(f'length of dataset: {len(dataset)}.')
-    print(dataset.__getitem__(index=999)[0].shape)
-    print(dataset.__getitem__(index=999)[1].shape)
-    print(type(dataset.__getitem__(index=999)), len(dataset.__getitem__(index=999)))
+    print(dataset.__getitem__(index=8544)[0].shape)
+    print(dataset.__getitem__(index=8544)[1].shape)
+    print(type(dataset.__getitem__(index=8544)), len(dataset.__getitem__(index=8544)))
