@@ -30,7 +30,11 @@ if __name__ == '__main__':
     parser.add_argument('--data', type=str, default='ETTh1')
     parser.add_argument('--root_path', type=str, default='D:\datasets\dataset\ETT-small')
     parser.add_argument('--data_path', type=str, default='ETTh1.csv')
-    parser.add_argument('--features', type=str, default='M')
+    parser.add_argument('--features', type=str, default='M',
+                        help='forecasting task, options:[M, S, MS]; '
+                             'M:multivariate predict multivariate, '
+                             'S:univariate predict univariate, '
+                             'MS:multivariate predict univariate')
     parser.add_argument('--target', type=str, default='OT')
     parser.add_argument('--freq', type=str, default='h')
     parser.add_argument('--checkpoints', type=str, default='../checkpoints/')
