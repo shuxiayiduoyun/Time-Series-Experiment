@@ -7,9 +7,9 @@
  @Description: 
 """
 import math
-
 import torch
 import numpy as np
+from matplotlib import pyplot as plt
 
 
 def adjust_learning_rate(optimizer, epoch, args):
@@ -63,3 +63,15 @@ class EarlyStopping:
             print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
         torch.save(model.state_dict(), path + '/' + 'checkpoint.pth')
         self.val_loss_min = val_loss
+
+
+def visual(true, preds=None, name='./pic/test.pdf'):
+    """
+    Results visualization
+    """
+    plt.figure()
+    plt.plot(true, label='GroundTruth', linewidth=2)
+    if preds is not None:
+        plt.plot(preds, label='Prediction', linewidth=2)
+    plt.legend()
+    plt.savefig(name, bbox_inches='tight')

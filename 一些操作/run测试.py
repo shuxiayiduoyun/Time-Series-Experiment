@@ -23,7 +23,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='run测试')
     # basic config
     parser.add_argument('--task_name', type=str, default='long_term_forecast')
-    parser.add_argument('--is_training', type=int, default=1)
+    parser.add_argument('--is_training', type=int, default=0)
     parser.add_argument('--model_id', type=str, default='ETTh1_96_96')
     parser.add_argument('--model', type=str, default='Transformer')
     # data loader
@@ -43,6 +43,7 @@ if __name__ == '__main__':
     parser.add_argument('--label_len', type=int, default=48)
     parser.add_argument('--pred_len', type=int, default=96)
     parser.add_argument('--seasonal_patterns', type=str, default='Monthly', help='subset for M4')
+    parser.add_argument('--inverse', action='store_true', help='inverse output data', default=True)
     # model define
     parser.add_argument('--enc_in', type=int, default=7)
     parser.add_argument('--dec_in', type=int, default=7)
@@ -83,3 +84,8 @@ if __name__ == '__main__':
         exp = Exp(args)
         print('>>>>>>>start training : >>>>>>>>>>>>>>>>>>>>>>>>>>')
         exp.train('save_models')
+    else:
+        exp = Exp(args)
+        print('>>>>>>>start testing : >>>>>>>>>>>>>>>>>>>>>>>>>>')
+        exp.test('save_models', test=1)
+        torch.cuda.empty_cache()
