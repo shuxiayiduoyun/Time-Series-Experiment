@@ -60,9 +60,9 @@ if __name__ == '__main__':
     parser.add_argument('--activation', type=str, default='gelu')
     # optimization
     parser.add_argument('--num_workers', type=int, default=0)
-    parser.add_argument('--train_epochs', type=int, default=10)
+    parser.add_argument('--train_epochs', type=int, default=20)
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--patience', type=int, default=3)
+    parser.add_argument('--patience', type=int, default=7)
     parser.add_argument('--learning_rate', type=float, default=0.0001)
     parser.add_argument('--loss', type=str, default='MSE')
     parser.add_argument('--use_amp', action='store_true', default=True)

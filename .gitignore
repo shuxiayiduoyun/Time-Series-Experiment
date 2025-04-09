@@ -2,4 +2,5 @@ dataset/
 一些操作/mnist_dataset
 *.pth
 *.pdf
+*.txt
 results/
