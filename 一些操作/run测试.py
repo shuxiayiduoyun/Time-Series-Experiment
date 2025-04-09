@@ -65,6 +65,7 @@ if __name__ == '__main__':
     parser.add_argument('--learning_rate', type=float, default=0.0001)
     parser.add_argument('--loss', type=str, default='MSE')
     parser.add_argument('--use_amp', action='store_true', default=True)
+    parser.add_argument('--lradj', type=str, default='cosine')
     # GPU
     parser.add_argument('--use_gpu', type=bool, default=True)
     parser.add_argument('--gpu', type=int, default=0)
