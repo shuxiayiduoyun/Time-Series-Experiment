@@ -19,7 +19,7 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__':
-    root_path = 'D:\datasets\dataset\ETT-small'
+    root_path = '../dataset/ETT-small'
     data_path = 'ETTh1.csv'
     df_raw = pd.read_csv(os.path.join(root_path, data_path))
     print(df_raw.head())
@@ -30,7 +30,7 @@ if __name__ == '__main__':
         # 绘制OT数据
         date_axis = pd.to_datetime(df_raw['date'])
         plt.figure(figsize=(12, 6))
-        plt.plot(date_axis, df_raw['OT'], label='OT')
+        plt.plot(date_axis.values, df_raw['OT'].values, label='OT')
         plt.xlabel('Date')
         plt.ylabel('OT')
         plt.title('OT over Time')
@@ -46,7 +46,7 @@ if __name__ == '__main__':
         plt.figure(figsize=(12, 6))
         for col in df_subset.columns:
             if col != 'date':  # 排除 'date' 列，因为它是横轴
-                plt.plot(df_subset['date'], df_subset[col], label=col)
+                plt.plot(df_subset['date'].values, df_subset[col].values, label=col)
 
         plt.xlabel('Date')
         plt.ylabel('Value')

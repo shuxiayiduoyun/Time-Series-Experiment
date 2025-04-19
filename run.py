@@ -27,7 +27,7 @@ if __name__ == '__main__':
     parser.add_argument('--model', type=str, default='DLinear', help='Transformer, DLinear')
     # data loader
     parser.add_argument('--data', type=str, default='ETTh1')
-    parser.add_argument('--root_path', type=str, default='D:\datasets\dataset\ETT-small')
+    parser.add_argument('--root_path', type=str, default='E:\workspaces\workspace_python\Time-Series-Experiment\dataset\ETT-small')
     parser.add_argument('--data_path', type=str, default='ETTh1.csv')
     parser.add_argument('--features', type=str, default='M',
                         help='forecasting task, options:[M, S, MS]; '
@@ -83,9 +83,41 @@ if __name__ == '__main__':
     if args.is_training:
         exp = Exp(args)
         print('>>>>>>>start training : >>>>>>>>>>>>>>>>>>>>>>>>>>')
-        exp.train('save_models')
+        setting = '{}_{}_{}_{}_ft{}_sl{}_ll{}_pl{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}'.format(
+            args.task_name,
+            args.model_id,
+            args.model,
+            args.data,
+            args.features,
+            args.seq_len,
+            args.label_len,
+            args.pred_len,
+            args.d_model,
+            args.n_heads,
+            args.e_layers,
+            args.d_layers,
+            args.d_ff,
+            args.factor,
+            args.embed)
+        exp.train(setting)
     else:
         exp = Exp(args)
+        setting = '{}_{}_{}_{}_ft{}_sl{}_ll{}_pl{}_dm{}_nh{}_el{}_dl{}_df{}_fc{}_eb{}'.format(
+            args.task_name,
+            args.model_id,
+            args.model,
+            args.data,
+            args.features,
+            args.seq_len,
+            args.label_len,
+            args.pred_len,
+            args.d_model,
+            args.n_heads,
+            args.e_layers,
+            args.d_layers,
+            args.d_ff,
+            args.factor,
+            args.embed)
         print('>>>>>>>start testing : >>>>>>>>>>>>>>>>>>>>>>>>>>')
-        exp.test('save_models', test=1)
+        exp.test(setting, test=1)
         torch.cuda.empty_cache()

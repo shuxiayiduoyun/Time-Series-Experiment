@@ -5,3 +5,4 @@ dataset/
 *.pdf
 *.txt
 results/
+test_results/
