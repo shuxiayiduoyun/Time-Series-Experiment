@@ -185,10 +185,10 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         if test:
             print('loading model...')
             os.chdir(os.path.dirname(os.path.abspath(__file__)))
-            self.model.load_state_dict(torch.load(os.path.join('../checkpoints/' + setting, 'checkpoint.pth')))
+            self.model.load_state_dict(torch.load(os.path.join('./checkpoints/' + setting, 'checkpoint.pth')))
         preds = []
         trues = []
-        folder_path = '../test_results/' + setting + '/'
+        folder_path = './test_results/' + setting + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -253,7 +253,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         print('test shape:', preds.shape, trues.shape)
 
         # result save
-        folder_path = '../results/' + setting + '/'
+        folder_path = './results/' + setting + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
