@@ -255,7 +255,7 @@ class UEAloader(Dataset):
 
             batch_x = batch_x.reshape((1 * seq_len, num_columns))
 
-        return self.instance_norm(torch.from_numpy(batch_x)), torch.from_numpy(labels)
+        return self.instance_norm(torch.from_numpy(batch_x.copy())), torch.from_numpy(labels.copy())
 
     def __len__(self):
         return len(self.all_IDs)

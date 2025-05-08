@@ -101,7 +101,7 @@ class Model(nn.Module):
         # if self.task_name == 'anomaly_detection':
         #     dec_out = self.anomaly_detection(x_enc)
         #     return dec_out  # [B, L, D]
-        # if self.task_name == 'classification':
-        #     dec_out = self.classification(x_enc)
-        #     return dec_out  # [B, N]
+        if self.task_name == 'classification':
+            dec_out = self.classification(x_enc)
+            return dec_out  # [B, N]
         return None
