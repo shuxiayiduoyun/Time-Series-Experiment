@@ -8,11 +8,13 @@
 """
 from torch.utils.data import DataLoader
 
-from data_provider.data_loader import Dataset_ETT_hour
+from data_provider.data_loader import Dataset_ETT_hour, UEAloader
+from data_provider.uea import collate_fn
 
 data_dict = {
     'ETTh1': Dataset_ETT_hour,
-    'ETTh2': Dataset_ETT_hour
+    'ETTh2': Dataset_ETT_hour,
+    'UEA': UEAloader
 }
 
 
@@ -53,4 +55,21 @@ def data_provider(args, flag):
             shuffle=shuffle_flag,
             num_workers=args.num_workers,
             drop_last=drop_last)
+        return data_set, data_loader
+    elif args.task_name == 'classification':
+        drop_last = False
+        data_set = Data(
+            args=args,
+            root_path=args.root_path,
+            flag=flag,
+        )
+
+        data_loader = DataLoader(
+            data_set,
+            batch_size=batch_size,
+            shuffle=shuffle_flag,
+            num_workers=args.num_workers,
+            drop_last=drop_last,
+            collate_fn=lambda x: collate_fn(x, max_len=args.seq_len)
+        )
         return data_set, data_loader

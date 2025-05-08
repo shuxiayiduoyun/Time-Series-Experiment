@@ -14,3 +14,5 @@ print("CUDA version:", torch.version.cuda)
 print("device_name: {}".format(torch.cuda.get_device_name(0)))
 # python版本
 print("python version: {}".format(sys.version))
+# pytorch版本
+print("pytorch version: {}".format(torch.__version__))

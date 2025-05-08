@@ -12,6 +12,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch import optim
+from torch.cuda.amp import autocast, GradScaler
 
 from data_provider.data_factory import data_provider
 from exp.exp_basic import Exp_Basic
@@ -58,6 +59,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                 # encoder - decoder
                 if self.args.use_amp:
                     with torch.amp.autocast('cuda'):
+                    # with autocast(dtype=torch.float16):
                         if self.args.output_attention:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                         else:
@@ -73,9 +75,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
                 pred = outputs.detach().cpu()
                 true = batch_y.detach().cpu()
-
                 loss = criterion(pred, true)
-
                 total_loss.append(loss)
         total_loss = np.average(total_loss)
         self.model.train()
@@ -124,6 +124,7 @@ class Exp_Long_Term_Forecast(Exp_Basic):
 
                 if self.args.use_amp:
                     with torch.amp.autocast('cuda'):
+                    # with autocast():
                         if self.args.output_attention:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                         else:
@@ -269,7 +270,6 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         np.save(folder_path + 'metrics.npy', np.array([mae, mse, rmse, mape, mspe]))
         np.save(folder_path + 'pred.npy', preds)
         np.save(folder_path + 'true.npy', trues)
-
         return
 
 

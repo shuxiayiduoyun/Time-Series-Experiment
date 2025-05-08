@@ -77,3 +77,7 @@ def visual(true, preds=None, name='./pic/test.pdf'):
     plt.savefig(name, bbox_inches='tight')
     # 显式关闭图形
     plt.close()
+
+
+def cal_accuracy(y_pred, y_true):
+    return np.mean(y_pred == y_true)
